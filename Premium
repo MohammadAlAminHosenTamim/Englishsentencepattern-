@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium English Sentence Patterns</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-dark: #050508;
+    --card-bg: #0d0f1c;
+    --aqua: #00f0ff;
+    --gold: #ffcf54;
+    --green: #00ff88;
+    --purple: #8a2be2;
+    --pink: #ff007f;
+    --text-main: #e2e8f0;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* --- 1. Header (Thinner, Multi-color, Underwater Animation, Gradient Text) --- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-align: center;
+    padding: 20px 20px; /* Thinner header */
+    background: linear-gradient(135deg, #020c1b, #0a192f, #112240);
+    border-bottom: 2px solid var(--aqua);
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+    overflow: hidden;
+  }
+
+  /* Underwater elements */
+  .underwater {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+   /* মাছের সাধারণ স্টাইল */
+  .fish {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: swim linear infinite;
+    opacity: 0.6;
+    display: inline-block;
+  }
+
+  /* Fish 1: বাম থেকে ডানে যাবে, মুখ থাকবে ডানে */
+  .fish1 { 
+    top: 10px; 
+    left: -50px; 
+    animation-duration: 18s; 
+    transform: scaleX(-1); /* মুখ ডানে ঘোরানোর জন্য */
+  }
+
+  /* Fish 2: ডান থেকে বামে যাবে, মুখ থাকবে বামে */
+  .fish2 { 
+    top: 40px; 
+    right: -50px; 
+    animation: swim-reverse 20s linear infinite; 
+    transform: scaleX(1); /* মুখ বামে রাখার জন্য (ডিফল্ট) */
+  }
+
+  
+  .bubble {
+    position: absolute;
+    font-size: 1rem;
+    bottom: -20px;
+    animation: rise infinite ease-in;
+    opacity: 0.5;
+  }
+  .b1 { left: 20%; animation-duration: 4s; }
+  .b2 { left: 50%; animation-duration: 5s; animation-delay: 1s; }
+  .b3 { left: 80%; animation-duration: 3.5s; }
+
+  .weed {
+    position: absolute;
+    bottom: -5px;
+    font-size: 2rem;
+    animation: wave 5s ease-in-out infinite alternate;
+    opacity: 0.4;
+    transform-origin: bottom;
+  }
+  .w1 { left: 10%; }
+  .w2 { right: 15%; animation-delay: 0.5s; }
+/* বাম থেকে ডানে যাওয়ার অ্যানিমেশন */
+  @keyframes swim { 
+    0% { left: -50px; transform: translateY(0) scaleX(-1); } 
+    50% { transform: translateY(-10px) scaleX(-1); } 
+    100% { left: 100%; transform: translateY(0) scaleX(-1); } 
+  }
+
+  /* ডান থেকে বামে যাওয়ার অ্যানিমেশন */
+  @keyframes swim-reverse { 
+    0% { right: -50px; transform: translateY(0) scaleX(1); } 
+    50% { transform: translateY(10px) scaleX(1); } 
+    100% { right: 100%; transform: translateY(0) scaleX(1); } 
+  }
+
+  @keyframes rise { 0% { bottom: -20px; transform: translateX(0); } 50% { transform: translateX(10px); } 100% { bottom: 100px; transform: translateX(-10px); opacity: 0; } }
+  @keyframes wave { 0% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
+
+  /* Gradient Heading */
+  h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+    background: linear-gradient(90deg, var(--aqua), var(--green), var(--gold), var(--pink), var(--aqua));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 4s linear infinite;
+  }
+  
+  @keyframes textGradient { to { background-position: 300% center; } }
+
+  .author {
+    position: relative;
+    z-index: 1;
+    font-family: 'Fira Code', monospace;
+    background: linear-gradient(90deg, var(--gold), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* --- 2. Navigation Buttons --- */
+  .nav-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .nav-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: linear-gradient(45deg, var(--purple), var(--aqua));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 10px var(--aqua), inset 0 0 5px rgba(255,255,255,0.5);
+  }
+
+  /* --- Container & Grid --- */
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .section { display: none; animation: fadeIn 0.5s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+
+  /* --- 3. Premium Flashcard (Galaxy Background + Perfect Border Animation) --- */
+  .flashcard-wrapper {
+    position: relative;
+    border-radius: 16px;
+    padding: 3px; 
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .flashcard-wrapper:hover { transform: translateY(-5px); }
+
+  /* Border Animation */
+  .flashcard-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(from 0deg, transparent 70%, var(--aqua) 80%, var(--purple) 100%);
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .flashcard-wrapper.active { box-shadow: 0 0 20px rgba(138, 43, 226, 0.4), 0 0 40px rgba(0, 240, 255, 0.2); }
+  .flashcard-wrapper.active::before { opacity: 1; animation: rotateLight 3s linear infinite; }
+  @keyframes rotateLight { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  /* GALAXY BACKGROUND ANIMATION inside card */
+  .flashcard {
+    background-color: var(--card-bg);
+    /* Multiple layers of radial gradients to create moving stars */
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0)),
+      linear-gradient(135deg, #090a10 0%, #170e2b 50%, #0d1224 100%);
+    background-repeat: repeat;
+    background-size: 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 100% 100%;
+    animation: galaxyMove 40s linear infinite;
+    
+    border-radius: 14px;
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  @keyframes galaxyMove {
+    from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 200px 200px, -200px 200px, 200px -200px, -200px -200px, 0 200px, 200px 0, 0 0; }
+  }
+
+  .pattern-num { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--aqua); }
+  .pattern-eng {
+    font-size: 1.2rem; font-weight: 700; color: #fff;
+    background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px);
+    padding: 10px 15px; border-left: 3px solid var(--aqua); border-radius: 4px;
+  }
+  .pattern-ben { color: var(--gold); font-size: 0.95rem; text-shadow: 1px 1px 2px #000; }
+  .pattern-pro { color: #aaa; font-style: italic; font-size: 0.85rem; text-shadow: 1px 1px 2px #000; }
+
+  /* Dynamic Examples Section */
+  .examples-container { display: none; margin-top: 10px; padding-top: 15px; border-top: 1px dashed rgba(255, 255, 255, 0.2); }
+  .flashcard-wrapper.active .examples-container { display: flex; flex-direction: column; gap: 10px; animation: fadeIn 0.4s ease; }
+  .example-item {
+    background: rgba(0, 0, 0, 0.5); border-left: 2px solid var(--green);
+    padding: 8px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .example-text { font-size: 0.85rem; color: #e2e8f0; }
+
+  /* Audio Buttons */
+  .audio-btn {
+    background: rgba(0,0,0,0.5); border: 1px solid var(--aqua); color: var(--aqua);
+    border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.3s; box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); flex-shrink: 0;
+  }
+  .audio-btn:hover { background: var(--aqua); color: #000; box-shadow: 0 0 10px var(--aqua); }
+  .main-audio-btn {
+    width: 100%; border-radius: 8px; margin-top: auto; padding: 10px; font-weight: 600;
+    text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--purple); color: var(--purple);
+  }
+  .main-audio-btn:hover { background: var(--purple); color: #fff; box-shadow: 0 0 15px var(--purple); border-color: var(--purple); }
+
+  .placeholder { text-align: center; padding: 50px 20px; background: rgba(0,0,0,0.5); border-radius: 16px; border: 1px dashed var(--purple); color: #aaa; }
+</style>
+</head>
+<body>
+
+  <!-- Header with Underwater Animation -->
+  <header>
+    <div class="underwater">
+      <span class="fish fish1">🐟</span>
+      <span class="fish fish2">🐠</span>
+      <span class="bubble b1">🫧</span>
+      <span class="bubble b2">🫧</span>
+      <span class="bubble b3">🫧</span>
+      <span class="weed w1">🌿☘️</span>
+      <span class="weed w2">🌿</span>
+    </div>
+    <h1>English Sentence Patterns</h1>
+    <div class="author">Developed by Mohammad Al Amin Hosen Tamim</div>
+  </header>
+
+  <!-- Navigation -->
+  <div class="nav-container">
+    <button class="nav-btn active" onclick="switchTab('sec-1', this, data1st50)">1st 50</button>
+    <button class="nav-btn" onclick="switchTab('sec-2', this, data2nd50)">2nd 50</button>
+    <button class="nav-btn" onclick="switchTab('sec-3', this, data3rd50)">3rd 50</button>
+    <button class="nav-btn" onclick="switchTab('sec-4', this, data4th50)">4th 50</button>
+    <button class="nav-btn" onclick="switchTab('sec-5', this, data5th50)">5th 50</button>
+    <button class="nav-btn" onclick="switchTab('sec-6', this, data6th50)">6th 50</button>
+  </div>
+
+  <div class="container">
+    <!-- Sections -->
+    <div id="sec-1" class="section active"><div class="grid" id="grid-sec-1"></div></div>
+    <div id="sec-2" class="section"><div class="grid" id="grid-sec-2"></div><div id="ph-sec-2" class="placeholder"><h2>2nd 50 Patterns</h2><p>Go to the code and paste your JSON data in the `data2nd50` array.</p></div></div>
+    <div id="sec-3" class="section"><div class="grid" id="grid-sec-3"></div><div id="ph-sec-3" class="placeholder"><h2>3rd 50 Patterns</h2><p>Go to the code and paste your JSON data in the `data3rd50` array.</p></div></div>
+    <div id="sec-4" class="section"><div class="grid" id="grid-sec-4"></div><div id="ph-sec-4" class="placeholder"><h2>4th 50 Patterns</h2><p>Go to the code and paste your JSON data in the `data4th50` array.</p></div></div>
+    <div id="sec-5" class="section"><div class="grid" id="grid-sec-5"></div><div id="ph-sec-5" class="placeholder"><h2>5th 50 Patterns</h2><p>Go to the code and paste your JSON data in the `data5th50` array.</p></div></div>
+    <div id="sec-6" class="section"><div class="grid" id="grid-sec-6"></div><div id="ph-sec-6" class="placeholder"><h2>6th 50 Patterns</h2><p>Go to the code and paste your JSON data in the `data6th50` array.</p></div></div>
+  </div>
+
+<script>
+  // ==========================================
+  // 5. DATA SECTIONS (PLACE YOUR DATA HERE)
+  // ==========================================
+  
+  // --- 1st 50 Data ---
+  const data1st50 = [
+    { n: 1, pat: "I'm keen on + [Verb+ing]", ben: "আমি ... করার ব্যাপারে খুব আগ্রহী।", pro: "আইম কীন অন", pool: ["I'm keen on learning new languages.", "She is keen on playing tennis.", "They're keen on traveling the world.", "I'm keen on exploring new technologies.", "He's keen on reading historical books.", "We are keen on starting this project.", "I'm keen on cooking Italian food.", "She's keen on mastering piano."] },
+    { n: 2, pat: "I'm fond of + [Noun/ing]", ben: "আমি ... খুব পছন্দ করি।", pro: "আইম ফন্ড অফ", pool: ["I'm fond of classical music.", "She's fond of chocolate cake.", "I'm fond of walking in the rain.", "They are fond of vintage cars.", "He's fond of telling funny stories.", "We are fond of collecting stamps.", "I'm fond of sweet desserts.", "She is fond of her pet cat."] },
+    { n: 3, pat: "I'm about to + [Verb]", ben: "আমি এখনই ... করতে যাচ্ছি।", pro: "আইম অ্যাবাউট টু", pool: ["I'm about to leave for the airport.", "She's about to finish her presentation.", "We are about to start the movie.", "He is about to call his manager.", "I'm about to go to sleep.", "They are about to announce the winner.", "I'm about to send the email.", "She's about to cry."] },
+    { n: 4, pat: "It's time to + [Verb]", ben: "এখন ... করার সময়।", pro: "ইটস টাইম টু", pool: ["It's time to wake up.", "It's time to say goodbye.", "It's time to take a break.", "It's time to start working.", "It's time to change the plan.", "It's time to go home.", "It's time to make a decision.", "It's time to move on."] },
+    { n: 5, pat: "I used to + [Verb]", ben: "আমি আগে ... করতাম (কিন্তু এখন করি না)।", pro: "আই ইউজড টু", pool: ["I used to play cricket every afternoon.", "She used to live in London.", "I used to smoke, but I quit.", "They used to be good friends.", "He used to work here.", "We used to visit them every week.", "I used to hate vegetables.", "She used to wear glasses."] },
+    { n: 6, pat: "I am used to + [Verb+ing]", ben: "আমি ... করতে অভ্যস্ত।", pro: "আই অ্যাম ইউজড টু", pool: ["I am used to waking up early.", "She is used to working under pressure.", "I am used to living alone.", "They are used to the cold weather.", "He is used to speaking in public.", "We are used to eating spicy food.", "I am used to driving in heavy traffic.", "She's used to studying at night."] },
+    { n: 7, pat: "I'm looking forward to + [Verb+ing]", ben: "আমি ... করার জন্য অধীর আগ্রহে অপেক্ষা করছি।", pro: "আইম লুকিং ফরোয়ার্ড টু", pool: ["I'm looking forward to meeting you.", "She's looking forward to visiting Paris.", "We are looking forward to hearing from you.", "I'm looking forward to starting my new job.", "They are looking forward to the holidays.", "He's looking forward to seeing his family.", "I'm looking forward to the concert.", "She's looking forward to getting married."] },
+    { n: 8, pat: "I feel like + [Verb+ing]", ben: "আমার ... করতে ইচ্ছা করছে।", pro: "আই ফিল লাইক", pool: ["I feel like having a cup of coffee.", "She feels like going for a walk.", "I don't feel like working today.", "They feel like watching a movie.", "He feels like crying.", "We feel like celebrating tonight.", "I feel like sleeping all day.", "She feels like eating ice cream."] },
+    { n: 9, pat: "I'm thinking of + [Verb+ing]", ben: "আমি ... করার কথা ভাবছি।", pro: "আইম থিংকিং অফ", pool: ["I'm thinking of buying a new car.", "She's thinking of moving to another city.", "I'm thinking of changing my career.", "They are thinking of starting a business.", "He's thinking of going back to school.", "We are thinking of adopting a pet.", "I'm thinking of painting my room.", "She's thinking of taking a vacation."] },
+    { n: 10, pat: "I can't help + [Verb+ing]", ben: "আমি ... না করে পারছি না।", pro: "আই কান্ট হেল্প", pool: ["I can't help laughing at his jokes.", "She can't help feeling nervous.", "I can't help eating chocolates.", "They can't help wondering about the future.", "He can't help staring at her.", "We can't help agreeing with him.", "I can't help worrying about my exams.", "She can't help crying during sad movies."] },
+    { n: 11, pat: "I'm supposed to + [Verb]", ben: "আমার ... করার কথা (দায়িত্ব)।", pro: "আইম সাপোজড টু", pool: ["I'm supposed to submit the report today.", "You're supposed to be here at 9 AM.", "She is supposed to call me back.", "We are supposed to clean the house.", "He is supposed to lead the meeting.", "I'm supposed to meet him for lunch.", "They are supposed to deliver the package.", "I'm supposed to take my medicine."] },
+    { n: 12, pat: "I'd rather + [Verb] + than + [Verb]", ben: "আমি বরং ... করব তবুও ... করব না।", pro: "আইড রাদার", pool: ["I'd rather walk than take the bus.", "She'd rather read a book than watch TV.", "I'd rather stay home than go out.", "They'd rather fail than cheat.", "He'd rather sleep than play games.", "We'd rather starve than beg.", "I'd rather listen to music than talk.", "She'd rather drink tea than coffee."] },
+    { n: 13, pat: "It's no use + [Verb+ing]", ben: "... করে কোনো লাভ নেই।", pro: "ইটস নো ইউজ", pool: ["It's no use crying over spilled milk.", "It's no use complaining now.", "It's no use trying to change his mind.", "It's no use waiting for them.", "It's no use arguing with a fool.", "It's no use running, the train has left.", "It's no use hiding the truth.", "It's no use apologizing after the damage is done."] },
+    { n: 14, pat: "There's no point in + [Verb+ing]", ben: "... করার কোনো মানে হয় না।", pro: "দেয়ারস নো পয়েন্ট ইন", pool: ["There's no point in worrying about it.", "There's no point in going there now.", "There's no point in buying a broken car.", "There's no point in talking to him.", "There's no point in regretting the past.", "There's no point in repeating the same mistake.", "There's no point in staying awake late.", "There's no point in fixing this old machine."] },
+    { n: 15, pat: "How about + [Verb+ing]?", ben: "... করলে কেমন হয়?", pro: "হাউ অ্যাবাউট", pool: ["How about ordering pizza tonight?", "How about visiting the museum tomorrow?", "How about taking a short break?", "How about trying a different approach?", "How about watching a comedy movie?", "How about going for a swim?", "How about inviting them over?", "How about learning a new language?"] },
+    { n: 16, pat: "What if + [Subject + Verb]?", ben: "কি হবে যদি ...?", pro: "হোয়াট ইফ", pool: ["What if it rains during the match?", "What if he doesn't agree with us?", "What if we miss the flight?", "What if they find out the truth?", "What if the plan fails?", "What if I get the job?", "What if she forgets to call?", "What if the car breaks down on the way?"] },
+    { n: 17, pat: "I'm bound to + [Verb]", ben: "আমি ... করতে বাধ্য বা নিশ্চিতভাবে করব।", pro: "আইম বাউন্ড টু", pool: ["I'm bound to make mistakes.", "She is bound to notice the change.", "They are bound to win the game.", "He is bound to return eventually.", "We are bound to face difficulties.", "I'm bound to succeed if I work hard.", "The truth is bound to come out.", "You are bound to feel tired after such a long journey."] },
+    { n: 18, pat: "I'm getting tired of + [Verb+ing]", ben: "আমি ... করতে করতে ক্লান্ত/বিরক্ত হয়ে যাচ্ছি।", pro: "আইম গেটিং টায়ার্ড অফ", pool: ["I'm getting tired of eating the same food.", "She's getting tired of his excuses.", "I'm getting tired of waiting for the bus.", "They are getting tired of working late.", "He is getting tired of answering the phone.", "We are getting tired of this hot weather.", "I'm getting tired of arguing with you.", "She is getting tired of trying to please everyone."] },
+    { n: 19, pat: "It takes [Time] to + [Verb]", ben: "... করতে [সময়] লাগে।", pro: "ইট টেকস", pool: ["It takes two hours to reach there.", "It takes a lot of effort to learn English.", "It takes courage to speak the truth.", "It takes time to heal a broken heart.", "It takes five minutes to make a cup of tea.", "It takes months to build a house.", "It takes patience to raise children.", "It takes practice to become perfect."] },
+    { n: 20, pat: "I have trouble + [Verb+ing]", ben: "আমার ... করতে সমস্যা হচ্ছে।", pro: "আই হ্যাভ ট্রাবল", pool: ["I have trouble sleeping at night.", "She has trouble understanding math.", "I have trouble remembering names.", "They have trouble communicating in French.", "He has trouble keeping secrets.", "We have trouble finding good employees.", "I have trouble reading small texts.", "She has trouble dealing with stress."] },
+    { n: 21, pat: "I've decided to + [Verb]", ben: "আমি ... করার সিদ্ধান্ত নিয়েছি।", pro: "আইভ ডিসাইডেড টু", pool: ["I've decided to quit my job.", "She's decided to move to Canada.", "I've decided to learn how to code.", "They've decided to get married.", "He's decided to buy a new house.", "We've decided to cancel the trip.", "I've decided to start a diet.", "She's decided to forgive him."] },
+    { n: 22, pat: "I'm here to + [Verb]", ben: "আমি এখানে ... করতে এসেছি।", pro: "আইম হিয়ার টু", pool: ["I'm here to help you.", "I'm here to learn from the best.", "She is here to collect her prize.", "We are here to support our team.", "He is here to repair the computer.", "I'm here to apologize for my mistake.", "They are here to attend the conference.", "I'm here to pick up my luggage."] },
+    { n: 23, pat: "I'm calling to + [Verb]", ben: "আমি ... করার জন্য ফোন করছি।", pro: "আইম কলিং টু", pool: ["I'm calling to book a table.", "I'm calling to confirm our meeting.", "She's calling to ask for a favor.", "I'm calling to complain about the service.", "He's calling to wish you a happy birthday.", "We are calling to invite you to the party.", "I'm calling to cancel my subscription.", "I'm calling to check on your health."] },
+    { n: 24, pat: "I'm working on + [Noun/ing]", ben: "আমি ... নিয়ে কাজ করছি।", pro: "আইম ওয়ার্কিং অন", pool: ["I'm working on a new project.", "She's working on improving her English.", "I'm working on my communication skills.", "They are working on a solution to the problem.", "He's working on his thesis.", "We are working on building a website.", "I'm working on fixing my car.", "She's working on a painting."] },
+    { n: 25, pat: "I'm afraid that + [Sentence]", ben: "আমি দুঃখিত যে ... / আমার ভয় হচ্ছে যে ...", pro: "আইম অ্যাফ্রেইড দ্যাট", pool: ["I'm afraid that I can't help you.", "I'm afraid that we have lost the game.", "She's afraid that he might reject her.", "I'm afraid that the flight is delayed.", "He is afraid that he will fail the test.", "I'm afraid that I have some bad news.", "We are afraid that the costs will increase.", "I'm afraid that you are mistaken."] },
+    { n: 26, pat: "I'm sure that + [Sentence]", ben: "আমি নিশ্চিত যে ...", pro: "আইম শিওর দ্যাট", pool: ["I'm sure that you will succeed.", "I'm sure that he is telling the truth.", "She's sure that she locked the door.", "I'm sure that we will win the match.", "They are sure that the plan will work.", "I'm sure that he will be a great leader.", "We are sure that things will get better.", "I'm sure that I saw him here."] },
+    { n: 27, pat: "I'm not sure if + [Sentence]", ben: "আমি নিশ্চিত নই যে ... কি না।", pro: "আইম নট শিওর ইফ", pool: ["I'm not sure if he will come.", "I'm not sure if I have enough money.", "She's not sure if she should accept the offer.", "I'm not sure if this is the right address.", "They are not sure if the shop is open.", "I'm not sure if I can finish this on time.", "We are not sure if he got the message.", "I'm not sure if I like this color."] },
+    { n: 28, pat: "I've heard that + [Sentence]", ben: "আমি শুনেছি যে ...", pro: "আইভ হার্ড দ্যাট", pool: ["I've heard that you are getting married.", "I've heard that the company is closing.", "She's heard that he is very strict.", "I've heard that this restaurant is amazing.", "They've heard that a storm is coming.", "I've heard that he resigned from his job.", "We've heard that the movie is boring.", "I've heard that you won the lottery!"] },
+    { n: 29, pat: "It occurs to me that + [Sentence]", ben: "আমার মনে হচ্ছে যে ...", pro: "ইট অকার্স টু মি দ্যাট", pool: ["It occurs to me that we forgot his birthday.", "It occurs to me that she might be lying.", "It occurs to me that I left my keys inside.", "It occurs to me that we are lost.", "It occurs to me that he doesn't know the truth.", "It occurs to me that we need a better plan.", "It occurs to me that I should apologize.", "It occurs to me that time is running out."] },
+    { n: 30, pat: "It's lucky that + [Sentence]", ben: "এটা ভাগ্যের ব্যাপার যে ...", pro: "ইটস লাকি দ্যাট", pool: ["It's lucky that you were there to help.", "It's lucky that it didn't rain yesterday.", "It's lucky that I found my wallet.", "It's lucky that we caught the train on time.", "It's lucky that no one was hurt.", "It's lucky that she knows the way.", "It's lucky that I had an umbrella.", "It's lucky that we booked the tickets early."] },
+    { n: 31, pat: "I'll let you know when + [Sentence]", ben: "... হলে আমি তোমাকে জানাব।", pro: "আইল লেট ইউ নো হোয়েন", pool: ["I'll let you know when I reach home.", "I'll let you know when the results are out.", "I'll let you know when I am free.", "I'll let you know when the meeting starts.", "I'll let you know when he arrives.", "I'll let you know when dinner is ready.", "I'll let you know when I make a decision.", "I'll let you know when the package is delivered."] },
+    { n: 32, pat: "I'm dying to + [Verb]", ben: "আমি ... করার জন্য মরে যাচ্ছি (খুবই ইচ্ছুক)।", pro: "আইম ডাইং টু", pool: ["I'm dying to see you.", "I'm dying to eat some pizza.", "She's dying to know the secret.", "I'm dying to watch the new episode.", "He is dying to play the new game.", "We are dying to go on a vacation.", "I'm dying to tell you the good news.", "I'm dying to try this recipe."] },
+    { n: 33, pat: "I'm in the mood for + [Noun/ing]", ben: "আমার এখন ... করার মেজাজ আছে।", pro: "আইম ইন দ্য মুড ফর", pool: ["I'm in the mood for a cup of tea.", "I'm in the mood for watching a movie.", "She's in the mood for dancing.", "I'm in the mood for some spicy food.", "He's not in the mood for joking.", "We are in the mood for an adventure.", "I'm in the mood for listening to music.", "I'm in the mood for doing nothing."] },
+    { n: 34, pat: "I can't wait to + [Verb]", ben: "আমি ... করার জন্য আর অপেক্ষা করতে পারছি না।", pro: "আই কান্ট ওয়েট টু", pool: ["I can't wait to meet you.", "I can't wait to unbox my new phone.", "She can't wait to start her new job.", "I can't wait to travel again.", "He can't wait to see his parents.", "We can't wait to hear your presentation.", "I can't wait to taste this cake.", "I can't wait to finish this exam."] },
+    { n: 35, pat: "I'm planning to + [Verb]", ben: "আমি ... করার পরিকল্পনা করছি।", pro: "আইম প্ল্যানিং টু", pool: ["I'm planning to go abroad next year.", "I'm planning to start a YouTube channel.", "She's planning to buy a new dress.", "We are planning to organize a party.", "He is planning to surprise her.", "I'm planning to learn video editing.", "They are planning to invest in stocks.", "I'm planning to wake up early tomorrow."] },
+    { n: 36, pat: "I'm trying to + [Verb]", ben: "আমি ... করার চেষ্টা করছি।", pro: "আইম ট্রায়িং টু", pool: ["I'm trying to solve this puzzle.", "I'm trying to lose some weight.", "She's trying to focus on her studies.", "I'm trying to understand your point of view.", "He is trying to fix the television.", "We are trying to contact him.", "I'm trying to save money.", "I'm trying to be a better person."] },
+    { n: 37, pat: "I'm sorry for + [Verb+ing]", ben: "আমি ... করার জন্য দুঃখিত।", pro: "আইম সরি ফর", pool: ["I'm sorry for being late.", "I'm sorry for breaking your trust.", "She is sorry for shouting at you.", "I'm sorry for making a mistake.", "He is sorry for losing the keys.", "I'm sorry for hurting your feelings.", "We are sorry for disturbing you.", "I'm sorry for causing so much trouble."] },
+    { n: 38, pat: "I'm curious about + [Noun/ing]", ben: "আমি ... নিয়ে কৌতূহলী।", pro: "আইম কিউরিয়াস অ্যাবাউট", pool: ["I'm curious about the universe.", "I'm curious about learning new cultures.", "She's curious about his past.", "I'm curious about how it works.", "He is curious about the latest technology.", "We are curious about the results.", "I'm curious about your opinion.", "I'm curious about exploring this city."] },
+    { n: 39, pat: "I'm hesitant to + [Verb]", ben: "আমি ... করতে দ্বিধা বোধ করছি।", pro: "আইম হেজিটেট টু", pool: ["I'm hesitant to ask for a loan.", "I'm hesitant to share my password.", "She's hesitant to speak up in the meeting.", "I'm hesitant to travel alone.", "He is hesitant to invest his money.", "We are hesitant to trust him.", "I'm hesitant to make a quick decision.", "I'm hesitant to give him the responsibility."] },
+    { n: 40, pat: "I'm grateful for + [Noun/ing]", ben: "আমি ... এর জন্য কৃতজ্ঞ।", pro: "আইম গ্রেটফুল ফর", pool: ["I'm grateful for your support.", "I'm grateful for having such good friends.", "She is grateful for the opportunity.", "I'm grateful for my health.", "He is grateful for learning this lesson.", "We are grateful for everything.", "I'm grateful for your kind words.", "I'm grateful for being alive today."] },
+    { n: 41, pat: "I'm ashamed of + [Noun/ing]", ben: "আমি ... এর জন্য লজ্জিত।", pro: "আইম অ্যাশেইমড অফ", pool: ["I'm ashamed of my behavior.", "I'm ashamed of failing the test.", "She's ashamed of telling a lie.", "I'm ashamed of myself.", "He is ashamed of his old clothes.", "We are ashamed of losing so badly.", "I'm ashamed of what I did.", "I'm ashamed of making that silly mistake."] },
+    { n: 42, pat: "I'm proud of + [Noun/ing]", ben: "আমি ... নিয়ে গর্বিত।", pro: "আইম প্রাউড অফ", pool: ["I'm proud of my country.", "I'm proud of being your friend.", "She's proud of her achievements.", "I'm proud of our team's effort.", "He is proud of his son.", "We are proud of winning the trophy.", "I'm proud of doing the right thing.", "I'm proud of overcoming my fears."] },
+    { n: 43, pat: "I'm worried about + [Noun/ing]", ben: "আমি ... নিয়ে চিন্তিত।", pro: "আইম ওরিড অ্যাবাউট", pool: ["I'm worried about the future.", "I'm worried about passing the exam.", "She's worried about her mother's health.", "I'm worried about losing my job.", "He is worried about the bad weather.", "We are worried about making it on time.", "I'm worried about the growing pollution.", "I'm worried about speaking in front of a crowd."] },
+    { n: 44, pat: "I'm annoyed with + [Person]", ben: "আমি ... এর ওপর বিরক্ত।", pro: "আইম অ্যানয়েড উইথ", pool: ["I'm annoyed with my brother.", "I'm annoyed with him for being late.", "She's annoyed with her boss.", "I'm annoyed with you right now.", "He is annoyed with the customer.", "We are annoyed with the noisy neighbors.", "I'm annoyed with myself for forgetting.", "I'm annoyed with the mechanic."] },
+    { n: 45, pat: "I'm amazed at + [Noun/ing]", ben: "আমি ... দেখে অবাক।", pro: "আইম অ্যামেজড অ্যাট", pool: ["I'm amazed at his talent.", "I'm amazed at seeing this beautiful view.", "She's amazed at how fast he learns.", "I'm amazed at your intelligence.", "He is amazed at the technology.", "We are amazed at the speed of the car.", "I'm amazed at the building's architecture.", "I'm amazed at her confidence."] },
+    { n: 46, pat: "I'm disappointed with + [Noun/ing]", ben: "আমি ... নিয়ে হতাশ।", pro: "আইম ডিজঅ্যাপয়েন্টেড উইথ", pool: ["I'm disappointed with the result.", "I'm disappointed with his poor performance.", "She's disappointed with the bad service.", "I'm disappointed with this movie.", "He is disappointed with the delay.", "We are disappointed with the quality of food.", "I'm disappointed with your attitude.", "I'm disappointed with failing again."] },
+    { n: 47, pat: "I'm satisfied with + [Noun/ing]", ben: "আমি ... নিয়ে সন্তুষ্ট।", pro: "আইম স্যাটিসফাইড উইথ", pool: ["I'm satisfied with my current job.", "I'm satisfied with finishing the project.", "She's satisfied with the test results.", "I'm satisfied with the product quality.", "He is satisfied with her explanation.", "We are satisfied with your hard work.", "I'm satisfied with the salary.", "I'm satisfied with the progress."] },
+    { n: 48, pat: "I'm excited about + [Noun/ing]", ben: "আমি ... নিয়ে উত্তেজিত।", pro: "আইম এক্সাইটেড অ্যাবাউট", pool: ["I'm excited about the upcoming tour.", "I'm excited about joining the new college.", "She's excited about buying a new phone.", "I'm excited about the concert.", "He is excited about meeting his hero.", "We are excited about the new project.", "I'm excited about moving to a new city.", "I'm excited about the football match."] },
+    { n: 49, pat: "I'm bored with + [Noun/ing]", ben: "আমি ... নিয়ে বিরক্ত/একঘেয়ে বোধ করছি।", pro: "আইম বোর্ড উইথ", pool: ["I'm bored with watching the same show.", "I'm bored with my daily routine.", "She's bored with listening to his stories.", "I'm bored with this game.", "He is bored with eating fast food.", "We are bored with sitting at home.", "I'm bored with waiting for so long.", "I'm bored with this useless conversation."] },
+    { n: 50, pat: "I'm shocked by + [Noun/ing]", ben: "আমি ... শুনে মর্মাহত।", pro: "আইম শকড বাই", pool: ["I'm shocked by the sudden news.", "I'm shocked by hearing about the accident.", "She's shocked by his rude behavior.", "I'm shocked by the high price.", "He is shocked by losing the match.", "We are shocked by the decision.", "I'm shocked by seeing him here.", "I'm shocked by the lack of humanity."] }
+  ];
+
+  // --- PLACEHOLDER FOR NEXT SECTIONS ---
+  // আপনার বাকি JSON ডেটাগুলো নিচের Array গুলোতে পেস্ট করে দেবেন।
+  // উদাহরণস্বরূপ: const data2nd50 = [ { n: 51, pat: "...", ben: "...", pro: "...", pool: ["...", "..."] }, ... ];
+  const data2nd50 = []; // ২য় ৫০ টি ডেটা এখানে দেবেন
+  const data3rd50 = []; // ৩য় ৫০ টি ডেটা এখানে দেবেন
+  const data4th50 = []; // ৪র্থ ৫০ টি ডেটা এখানে দেবেন
+  const data5th50 = []; // ৫ম ৫০ টি ডেটা এখানে দেবেন
+  const data6th50 = []; // ৬ষ্ঠ ৫০ টি ডেটা এখানে দেবেন
+// ==========================================
+// 4. GOOGLE TTS MALE BRITISH VOICE (FINAL)
+// ==========================================
+
+function playAudio(text) {
+  // আগের কোনো অডিও চলতে থাকলে তা থামিয়ে দেবে
+  let existingAudio = document.getElementById('googleTTSAudio');
+  if (existingAudio) {
+    existingAudio.pause();
+    existingAudio.remove();
+  }
+
+  // টেক্সট পরিষ্কার করা
+  let cleanText = encodeURIComponent(text.replace(/\[.*?\]/g, '').replace(/\+/g, '').trim());
+
+  // সরাসরি Google Translate এর অডিও সোর্স ব্যবহার
+  let audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${cleanText}&tl=en-gb&client=tw-ob`;
+
+  let audio = new Audio(audioUrl);
+  audio.id = 'googleTTSAudio';
+  
+  // কণ্ঠ আরও গম্ভীর করার জন্য playbackRate ০.৮ বা ০.৯ রাখতে পারেন
+  audio.playbackRate = 0.5; 
+
+  audio.play().catch(error => {
+    console.warn("Google TTS blocked, using fallback...");
+    // ফেইলব্যাক: যদি গুগল কাজ না করে তবে ব্রাউজারের ডিফল্ট ভয়েস ব্যবহার করবে
+    let utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-GB';
+    window.speechSynthesis.speak(utter);
+  });
+}
+
+
+
+  // --- Rendering & Logic ---
+  function renderCards(dataArray, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    dataArray.forEach((item, index) => {
+      const cardHTML = `
+        <div class="flashcard-wrapper" id="card-${item.n}" onclick="toggleCard(${item.n}, ${index}, '${containerId}')">
+          <div class="flashcard">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pattern-num">Pattern #${item.n}</span>
+              <button class="audio-btn" onclick="event.stopPropagation(); playAudio('${item.pat.replace(/'/g, "\\'")}')">🔊</button>
+            </div>
+            <div class="pattern-eng">${item.pat}</div>
+            <div class="pattern-ben">🎯 ${item.ben}</div>
+            <div class="pattern-pro">🗣️ ${item.pro}</div>
+            
+            <div class="examples-container" id="examples-${item.n}"></div>
+            
+            <button class="main-audio-btn audio-btn" onclick="event.stopPropagation(); playAudio('${item.pat.replace(/'/g, "\\'")}')">
+              🎙️ Listen to Pattern
+            </button>
+          </div>
+        </div>
+      `;
+      container.innerHTML += cardHTML;
+    });
+  }
+
+  function shuffleArray(array) {
+    let shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  // Find dataset based on container ID
+  function getDatasetByContainer(containerId) {
+    if(containerId.includes('sec-1')) return data1st50;
+    if(containerId.includes('sec-2')) return data2nd50;
+    if(containerId.includes('sec-3')) return data3rd50;
+    if(containerId.includes('sec-4')) return data4th50;
+    if(containerId.includes('sec-5')) return data5th50;
+    if(containerId.includes('sec-6')) return data6th50;
+    return data1st50;
+  }
+
+  function toggleCard(id, dataIndex, containerId) {
+    const cardWrapper = document.getElementById(`card-${id}`);
+    const isActive = cardWrapper.classList.contains('active');
+    
+    document.querySelectorAll('.flashcard-wrapper').forEach(el => el.classList.remove('active'));
+
+    if (!isActive) {
+      cardWrapper.classList.add('active');
+      const dataset = getDatasetByContainer(containerId);
+      const pool = dataset[dataIndex].pool;
+      const randomExamples = shuffleArray(pool).slice(0, 5);
+      
+      const examplesContainer = document.getElementById(`examples-${id}`);
+      examplesContainer.innerHTML = '<div style="color: var(--pink); font-size: 0.8rem; letter-spacing:1px; margin-bottom: 5px; font-weight: bold;">⚡ AI EXAMPLES</div>';
+      
+      randomExamples.forEach((ex, idx) => {
+        examplesContainer.innerHTML += `
+          <div class="example-item">
+            <span class="example-text">${idx + 1}. ${ex}</span>
+            <button class="audio-btn" style="width:24px; height:24px; font-size: 10px;" onclick="event.stopPropagation(); playAudio('${ex.replace(/'/g, "\\'")}')">▶</button>
+          </div>
+        `;
+      });
+    }
+  }
+
+  // Switch tabs and render content dynamically
+  function switchTab(tabId, btn, dataArray) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const gridId = `grid-${tabId}`;
+    const phId = `ph-${tabId}`;
+
+    if (dataArray && dataArray.length > 0) {
+      document.getElementById(gridId).style.display = "grid";
+      if(document.getElementById(phId)) document.getElementById(phId).style.display = "none";
+      
+      // Render only if empty to save resources
+      if(document.getElementById(gridId).innerHTML.trim() === '') {
+        renderCards(dataArray, gridId);
+      }
+    } else {
+      document.getElementById(gridId).style.display = "none";
+      if(document.getElementById(phId)) document.getElementById(phId).style.display = "block";
+    }
+  }
+
+  // Initialize first section
+  window.onload = () => {
+    renderCards(data1st50, 'grid-sec-1');
+  };
+
+</script>
+</body>
+</html>
